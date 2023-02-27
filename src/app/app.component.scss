@@ -1,0 +1,16 @@
+@import '@angular/material/theming';
+
+@mixin app-theme($theme){
+    $primary: mat-palette($mat-grey, 100, 100, 100);
+    $background: map-get($theme, primary);
+    $background-color:mat-color($background, card);
+
+    body .mat-app-background{
+        background-color: mat-color($primary);
+    }
+}
+
+.content{
+    padding-left: 205px;
+
+}

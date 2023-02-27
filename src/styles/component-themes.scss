@@ -1,0 +1,8 @@
+@import '../app/dashboard/dashboard.component';
+@import '../app/app.component';
+
+@mixin component-themes($theme){
+
+    @include dashboard-theme($theme);
+    @include app-theme($theme);
+}
