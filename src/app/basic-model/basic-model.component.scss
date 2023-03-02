@@ -2,3 +2,58 @@
 .mat-mdc-tab-labels{
     color: black!important;
 }
+
+
+.drawer-container{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+#nav-right{
+  margin-top: 63px!important;
+  margin-right: 0px!important;
+  position: relative;
+  padding-right: 400px;
+  }
+
+  .drawer-container{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index:0;
+}
+
+.drawerButton{
+    display: flex;
+    position: relative;
+    z-index: 1;
+    margin-top: 75px;
+}
+
+
+#nav-expand:focus ~ mat-card{
+    user-select: none;
+    -webkit-user-drag: none;
+    margin-left: 2rem;
+
+}
+
+
+.title {
+    display: flex;
+    padding: 16px 16px 0;
+    margin-top: 75px;
+}
+
+.button-container{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    margin-top: -70px;
+    margin-left: 75px;
+}

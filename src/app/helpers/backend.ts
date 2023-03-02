@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, materialize, dematerialize } from 'rxjs/operators';
-import { ok } from 'assert';
-import { MatTabGroup } from '@angular/material/tabs';
 
 const accessKey = 'purply-registration-login-form'
 let users: any[] = JSON.parse(localStorage.getItem(accessKey)!) || [];
@@ -38,6 +36,35 @@ export class BackendInterceptor implements HttpInterceptor {
             }
         }
 
+        function ok(body?: any){
+            return of(new HttpResponse({ status: 200, body}))
+                .pipe(delay(500));
+        }
+
+        function error(message: string){
+            return throwError(() => ({ error: { message } }))
+                .pipe(materialize(), delay(500), dematerialize());
+        }
+
+        function unauthorized(){
+            return throwError(() => ({ status: 401, error: { message: 'inte auktoriserad'} }))
+                .pipe(materialize(), delay(500), dematerialize());
+        }
+
+        function basicDetails(user: any){
+            const {id, name, firstname, lastname } = user;
+            return {id, name, firstname, lastname};
+        }
+
+        function isLoggedIn(){
+            return headers.get('Auktoriserard') === 'Bearer fake-jwt-token';
+        }
+
+        function idFromUrl(){
+            const urlParts = url.split('/');
+            return parseInt(urlParts[urlParts.length -1]);
+        }
+
         function authenticate(){
             const { username, password } = body;
             const user = users.find(x => x.username === username && x.password === password);
@@ -66,6 +93,42 @@ export class BackendInterceptor implements HttpInterceptor {
             return ok(users.map(x => basicDetails(x)));
         }
 
+        function getUserById(){
+            if(!isLoggedIn()) return unauthorized();
+
+            const user = users.find(x => x.id === idFromUrl());
+            return ok(basicDetails(user));
+        }
+
+        function updateUser(){
+            if(!isLoggedIn()) return unauthorized();
+
+            let params = body;
+            let user = users.find(x => x.id === idFromUrl());
+
+            if(!params.password){
+                delete params.password;
+            }
+
+            Object.assign(user, params);
+            localStorage.setItem(accessKey, JSON.stringify(users));
+
+            return ok();
+        }
+
+        function deleteUser(){
+            if (!isLoggedIn()) return unauthorized();
+
+            users = users.filter(x => x.id !== idFromUrl());
+            localStorage.setItem(accessKey, JSON.stringify(users));
+            return ok();
+        }
         
     }
+}
+
+export const fakeBackendProvider = {
+    provide: HTTP_INTERCEPTORS,
+    useClass: BackendInterceptor, 
+    multi: true
 }

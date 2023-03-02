@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable, Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
-import {Alert, AlertType, AlertQptions} from '../model/alert'
+import {Alert, AlertType, AlertOptions} from '../model/alert'
 
 @Injectable({ providedIn: 'root'})
 export class AlertService{
@@ -13,18 +13,18 @@ export class AlertService{
         return this.subject.asObservable().pipe(filter(x => x && x.id === id));
 }
 
-success(message: string, options?: AlertQptions){
+success(message: string, options?: AlertOptions){
     this.alert(new Alert({...options, type: AlertType.Success, message}));
 }
 
-error(message: string, options?: AlertQptions){
+error(message: string, options?: AlertOptions){
     this.alert(new Alert({...options, type: AlertType.Success, message}));
 }
 
-info(message: string, options?: AlertQptions){
+info(message: string, options?: AlertOptions){
     this.alert(new Alert({...options, type: AlertType.Success, message}));
 }
-warn(message: string, options?: AlertQptions){
+warn(message: string, options?: AlertOptions){
     this.alert(new Alert({...options, type: AlertType.Success, message}));
 }
 

@@ -29,10 +29,17 @@ import { AboutComponent } from './about/about.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { AlertComponent } from './alert/alert.component'
 import { MatGridListModule} from '@angular/material/grid-list';
-import { ToolComponent } from './tool/tool.component'
+import { ToolComponent } from './tool/tool.component';
+import { AccountComponent } from './account/account.module';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
 
  const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent ,
+  children: [
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegistrationComponent}
+]},
   { path: 'basic-model', component: BasicModelComponent },
   { path: 'about', component: AboutComponent},
   { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -52,7 +59,9 @@ import { ToolComponent } from './tool/tool.component'
     AboutComponent,
     AlertComponent,
     ToolComponent,
-
+    AccountComponent,
+    LoginComponent,
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule, 

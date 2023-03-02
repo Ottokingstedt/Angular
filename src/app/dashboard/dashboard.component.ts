@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
-
-
+import { Router } from '@angular/router';
+import { AccountService } from '../services/account.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -15,8 +14,14 @@ export class DashboardComponent {
 
   // Get weekly  
 
-  constructor(private fb:FormBuilder){
+  constructor(
+    private router: Router,
+    private accountService: AccountService
+    ){
     this.currentWeek = this.getWeekNumber(new Date());
+    if(this.accountService.userValue){
+      this.router.navigate(['/']);
+    }
   };
 
   getWeekNumber(date: Date): number {
@@ -30,32 +35,6 @@ export class DashboardComponent {
     return weekNo;
   }
 
-  // select option 
-
-  selectForm!:FormGroup;
-
-  Riktmarke = [
-    { id: 1, name: "purply"},
-    { id: 2, name: "index"},
-  ];
-
-  Butiks = [
-    { id: 1, name: "bergvik" },
-    { id: 2, name: "stockholm"},
-    { id: 3, name: "huddinge"},
-    { id: 4, name: "Vaxjo"}
-  ];
-
-  ngOnInit(){
-  this.selectForm = this.fb.group({
-    riktmarke: [null],
-    butik: [null]
-  });
-  }
-
-  submit(){
-   console.log(this.selectForm.value) 
-  }
 
   income: any[] = [
     {

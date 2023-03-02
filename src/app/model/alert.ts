@@ -18,7 +18,7 @@ export enum AlertType{
     Warning
 }
 
-export class AlertQptions{
+export class AlertOptions{
     id?: string;
     autoClose?: boolean; 
     RouteChange?: boolean;

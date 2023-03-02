@@ -185,24 +185,3 @@ svg .ngx-charts{
 // 	width: 270px;
 // 	color: #EC6F66;
 // }
-
-.drawer-container{
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index:0;
-}
-
-.drawerButton{
-    top: 5%;
-    left: 75%;
-    z-index: 10000;
-    position: absolute;
-    cursor: pointer;
-}
-
-.drawer-side{
-    margin-top: 55px!important;
-}
