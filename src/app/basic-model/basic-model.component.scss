@@ -4,7 +4,7 @@
 
 .drawer-container {
   position: absolute;
-  top: 2%;
+  top: 4%;
   bottom: 0;
   left: 0;
   right: 0;
@@ -12,8 +12,12 @@
 }
 
 .button-container {
-  margin-top: 75px;
+  margin-top: 20px;
   width: 100%;
   display: flex;
   justify-content: end;
+}
+
+h1 {
+  color: green;
 }
