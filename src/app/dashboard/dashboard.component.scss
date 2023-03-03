@@ -154,7 +154,50 @@ svg .ngx-charts{
     width: auto;
     display: flex;
 }
+.box-icon{
+    display: flex;
+    box-shadow:  0 3px 10px rgb(0 0 0 / 0.2);
+    background-color: transparent;
+}
+.gird-flex{
+    display: inline-flex;
+    width: 200px;
+}
 
+mat-grid-list{
+    box-shadow:  0 3px 3px rgb(0 0 0 / 0.2);
+}
+
+.title{
+    font-size: 16px!important;
+
+}
+.icon-card{
+    font-size: 3rem;
+    display: flex;
+    width: auto;
+    height: auto;
+    color: #E8CAE9;
+    padding: 20px 30px 20px 30px;
+    background-color: #5D285F!important;
+    align-items: center;
+}
+
+h3{
+    display: flex;
+    margin-top: -7px;
+}
+
+p{
+    margin-top: -25px;
+    font-weight: 100;
+    font-size: 14px;
+}
+
+span{
+    font-size: 16px;
+    font-weight: 100;
+}
 // .formSelect select:after {
 //     position: absolute;
 //     content: "";

@@ -14,6 +14,21 @@
         position="end"
         id="nav-expand"
         >
+        <div>
+            <mat-card-header class="filter">
+              <mat-card-title>
+                  Filter
+                  <button 
+                  class="tooltip" 
+                  matTooltip="Filter är en samlad benämning på processteg som ändrar ett materials."
+                  aria-hidden="true" 
+                  aria-label="tooltip"
+                >
+                ?    
+              </button>
+              </mat-card-title>
+            </mat-card-header>
+          </div>
         <form [formGroup]="selectForm" (ngSubmit)="submit()" class="formSelect">
             <p class="butik">Butik</p>
             <select formControlName="butik">

@@ -26,10 +26,13 @@
       </button>
       <mat-toolbar-row>
       <span>Demo 1</span>
-      <div class="mat-flex-end">
-      <mat-icon class="accountIcon" fontIcon="account_circle">
-      </mat-icon> 
-      <p id="greetings">{{ greeting }}</p>
+      <div mat-button class="mat-flex-end">
+      <div class="user">  
+        <mat-icon class="accountIcon" fontIcon="account_circle"></mat-icon> 
+        <p id="greetings">{{ greeting }}</p>
+        <p>{{user?.firstName}}</p>
+      
+      </div>
       <mat-slide-toggle  [checked]="isDarkTheme | async" (change)="toggleDarkTheme($event.checked)">
         <mat-icon class="darkMoon" aria-hidden="false" aria-label="Sun icon" fontIcon="sunny"></mat-icon>
         <mat-icon aria-hidden="false" aria-label="Moon icon" fontIcon="dark_mode"></mat-icon>
@@ -41,3 +44,4 @@
  </mat-sidenav-content>
 </mat-sidenav-container>
 
+_purply_app_demo_frontend_angular

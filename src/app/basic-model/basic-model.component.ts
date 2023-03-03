@@ -8,6 +8,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./basic-model.component.scss']
 })
 export class BasicModelComponent{
+  
+
+
+
   selectForm!:FormGroup;
 
     // select option 
@@ -39,4 +43,5 @@ export class BasicModelComponent{
     submit(){
      console.log(this.selectForm.value) 
     }
-} 
+
+  } 

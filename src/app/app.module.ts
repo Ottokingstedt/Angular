@@ -12,13 +12,14 @@ import { NgChartsModule } from 'ng2-charts';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list'
 import { RouterModule, Routes } from '@angular/router';
 import { RouterTestingModule } from "@angular/router/testing";
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CardComponent } from './card/card.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -30,16 +31,15 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { AlertComponent } from './alert/alert.component'
 import { MatGridListModule} from '@angular/material/grid-list';
 import { ToolComponent } from './tool/tool.component';
-import { AccountComponent } from './account/account.module';
-import { LoginComponent } from './login/login.component';
-import { RegistrationComponent } from './registration/registration.component';
-
- const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent ,
-  children: [
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegistrationComponent}
-]},
+import { UserModule } from './user/user.module';
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { ErrorInterceptor } from './helpers/error.interceptor';
+import { fakeBackendProvider } from './helpers/backend';
+import { LayoutComponent } from './account/layout.component';
+import {MatMenuModule} from '@angular/material/menu'
+const routes: Routes = [
+  { path: 'dashboard', component: DashboardComponent,
+  },
   { path: 'basic-model', component: BasicModelComponent },
   { path: 'about', component: AboutComponent},
   { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -59,9 +59,7 @@ import { RegistrationComponent } from './registration/registration.component';
     AboutComponent,
     AlertComponent,
     ToolComponent,
-    AccountComponent,
-    LoginComponent,
-    RegistrationComponent,
+    LayoutComponent,
   ],
   imports: [
     BrowserModule, 
@@ -86,9 +84,17 @@ import { RegistrationComponent } from './registration/registration.component';
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     MatGridListModule,
+    MatTooltipModule,
+    UserModule,
+    MatMenuModule
   ],
   exports: [RouterModule],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS,useClass: JwtInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+
+    fakeBackendProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

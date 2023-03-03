@@ -57,3 +57,23 @@
     margin-top: -70px;
     margin-left: 75px;
 }
+
+.filter{
+    margin-top: 7px;
+    margin-left: 20px;
+    display: flex;
+    position: relative;
+}
+
+.tooltip{
+    display: inline-flex;
+    border: black solid 1px;
+    color: rgb(0, 0, 0);
+    border-radius: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 20px;
+}

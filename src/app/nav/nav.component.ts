@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { ThemeService } from '../core/services/theme.service';
 
+import { User } from '../model/user';
+import { AccountService } from '../services/account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -11,7 +14,13 @@ import { ThemeService } from '../core/services/theme.service';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit{
-  
+  // @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
+
+  // someMethod() {
+  //   this.trigger.openMenu();
+  // }
+  user!: User | null;
+
   greeting: string;
 
   isDarkTheme!: Observable<boolean>;
@@ -60,7 +69,12 @@ export class NavComponent implements OnInit{
 
 
 
-  constructor(private breakpointObserver: BreakpointObserver, private themeService: ThemeService){
+  constructor(
+    private breakpointObserver: BreakpointObserver, 
+    private themeService: ThemeService,
+    private router: Router,
+    private accountService: AccountService
+    ){
     const currentHour = new Date().getHours();
     if (currentHour >= 5 && currentHour < 12){
       this.greeting = "Godmorgon!";
@@ -69,7 +83,17 @@ export class NavComponent implements OnInit{
     } else {
       this.greeting = "God kväll"
     }
+    this.user = this.accountService.userValue
+    if(this.accountService.userValue){
+      this.router.navigate(['/'])
+    }
+    this.accountService.user.subscribe(x => this.user = x);
   }
+
   
+  logout(){
+    this.accountService.logout();
+   }
+   
 
 }

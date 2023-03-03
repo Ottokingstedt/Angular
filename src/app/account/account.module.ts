@@ -1,10 +1,22 @@
-import { Component } from '@angular/core';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
-@Component({
-  selector: 'app-account',
-  templateUrl: './account.component.html',
-  styleUrls: ['./account.component.scss']
+import { AccountRoutingModule } from './account-routing.module';
+import { LayoutComponent } from './layout.component';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
+
+@NgModule({
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        AccountRoutingModule
+    ],
+    declarations: [
+      RegistrationComponent,
+      LoginComponent,
+      LayoutComponent
+    ]
 })
-export class AccountComponent {
-
-}
+export class AccountModule { }
