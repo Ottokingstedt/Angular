@@ -1,40 +1,50 @@
-<mat-sidenav-container class="drawer-container">
-    <mat-sidenav-content id="nav-right">  
+<div>
+    <mat-sidenav-container>
         <div class="button-container">
-            <button 
-            class="drawerButton"
-            mat-button 
-            (click)="drawer.toggle()">
-                <mat-icon>sort</mat-icon>
-            </button>  
-        </div>
-        <mat-sidenav 
-        #drawer mode="side" 
-        [opened]="true" 
-        position="end"
-        id="nav-expand"
+            <button mat-button (click)="drawer.toggle()">
+              <mat-icon>sort</mat-icon>
+            </button>
+          </div>
+        <mat-sidenav
+          #drawer
+          mode="side"
+          [opened]="true"
+          position="end"
+          id="nav-expand"
         >
-        <form [formGroup]="selectForm" (ngSubmit)="submit()" class="formSelect">
+          <form [formGroup]="selectForm" (ngSubmit)="submit()" class="formSelect">
             <p class="butik">Butik</p>
             <select formControlName="butik">
-                <option class="option" [ngValue]="null">Select</option>        
-                <option class="option" *ngFor="let butik of Butiks" [ngValue]="butik.id">{{butik.name}}</option>
+              <option class="option" [ngValue]="null">Select</option>
+              <option
+                class="option"
+                *ngFor="let butik of Butiks"
+                [ngValue]="butik.id"
+              >
+                {{ butik.name }}
+              </option>
             </select>
-        
+    
             <p class="Riktmärke">Riktmärke</p>
             <select formControlName="riktmarke">
-                <option class="option" [ngValue]="null">Select</option>        
-                <option class="option" *ngFor="let riktmarke of Riktmarke" [ngValue]="riktmarke.id">{{riktmarke.name}}</option>
+              <option class="option" [ngValue]="null">Select</option>
+              <option
+                class="option"
+                *ngFor="let riktmarke of Riktmarke"
+                [ngValue]="riktmarke.id"
+              >
+                {{ riktmarke.name }}
+              </option>
             </select>
-        </form>
+          </form>
         </mat-sidenav>
-        <div class="content">
-<mat-tab-group [disableRipple]=true >
-    <mat-tab label="Omsättning"> Omsättning </mat-tab>
-    <mat-tab label="Täckningsbidrag"> Täckningsbidrag </mat-tab>
-    <mat-tab label="Genomförsäljning"> Genomförsäljning </mat-tab>
-    <mat-tab label="Omsättningshastighet"> Omsättningshastighet </mat-tab>
-</mat-tab-group>
+        <div>
+          <mat-tab-group [disableRipple]="true">
+            <mat-tab label="Omsättning"> Omsättning </mat-tab>
+            <mat-tab label="Täckningsbidrag"> Täckningsbidrag </mat-tab>
+            <mat-tab label="Genomförsäljning"> Genomförsäljning </mat-tab>
+            <mat-tab label="Omsättningshastighet"> Omsättningshastighet </mat-tab>
+          </mat-tab-group>
+        </div>
+    </mat-sidenav-container>
 </div>
-</mat-sidenav-content>
-</mat-sidenav-container>
