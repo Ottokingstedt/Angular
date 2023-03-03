@@ -79,8 +79,11 @@ mat-card-content{
     border-radius: 30px;
     width: auto;
     display: flex;
-    justify-content: center;
+    justify-content: center; 
+}
 
+.card-container {
+    height: 100vh;
 }
 
 svg .bar{

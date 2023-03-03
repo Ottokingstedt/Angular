@@ -33,6 +33,9 @@ import { ToolComponent } from './tool/tool.component';
 import { AccountComponent } from './account/account.module';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { RevenueComponent } from './basic-model/revenue/revenue.component';
+import * as CanvasJSAngularChart from '../assets/canvasjs-3/canvasjs.angular.component';
+var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 
  const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent ,
@@ -62,6 +65,8 @@ import { RegistrationComponent } from './registration/registration.component';
     AccountComponent,
     LoginComponent,
     RegistrationComponent,
+    RevenueComponent,
+    CanvasJSChart,
   ],
   imports: [
     BrowserModule, 
